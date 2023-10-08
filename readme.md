@@ -5,6 +5,11 @@
 Download firmware files by using STM32CubeMX for your STM. Those files are later used by
 https://github.com/ObKo/stm32-cmake CMake modules.
 
+Used projects:
+
+https://github.com/ObKo/stm32-cmake - STM32 CMake modules
+https://github.com/cmsis-svd/cmsis-svd/tree/main/data/STMicro - debugging SVD files
+
 ## Toolchain
 
 Download and add to path ARM toolchain, CMake and Ninja.

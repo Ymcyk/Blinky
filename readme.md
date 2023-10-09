@@ -15,25 +15,29 @@ TODO: add VS Code task for flashing with OpenOCD
 
 ## VS Code configuration
 
-settings.json
+Example `settings.json`
 
 ```json
 {
     "cmake.configureEnvironment": {
-        "CMAKE_TOOLCHAIN_FILE": "C:/Utils/stm32-cmake/cmake/stm32_gcc.cmake", // toolchain file from https://github.com/ObKo/stm32-cmake
-        "STM32_CUBE_F4_PATH": "C:/Users/pk/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1", // downloaded by CubeMX
+        "CMAKE_TOOLCHAIN_FILE": "C:/Utils/stm32-cmake/cmake/stm32_gcc.cmake",
+        "STM32_CUBE_F4_PATH": "C:/Users/pk/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1",
         "STM32_TARGET_TRIPLET": "arm-none-eabi",
-        "STM32_TOOLCHAIN_PATH": "C:/Utils/Compilers/arm-gnu-toolchain-mingw/bin", // arm toolchain 
-        "CMAKE_MODULE_PATH": "C:/Utils/stm32-cmake/cmake" // path to https://github.com/ObKo/stm32-cmake cmake modules
+        "STM32_TOOLCHAIN_PATH": "C:/Utils/Compilers/arm-gnu-toolchain-mingw/bin",
+        "CMAKE_MODULE_PATH": "C:/Utils/stm32-cmake/cmake"
     },
     "cortex-debug.openocdPath": "C:/Utils/OpenOCD/bin/openocd.exe",
     "cortex-debug.armToolchainPath.windows": "C:/Utils/Compilers/arm-gnu-toolchain-mingw/bin",
     "cortex-debug.gdbPath.windows": "C:/Utils/Compilers/arm-gnu-toolchain-mingw/bin/arm-none-eabi-gdb.exe"
 }
-
 ```
 
-launch.json
+- `CMAKE_TOOLCHAIN_FILE` - toolchain CMake file from https://github.com/ObKo/stm32-cmake project
+- `STM32_CUBE_F4_PATH` - firmware from STM32CubeMX
+- `STM32_TOOLCHAIN_PATH` - path to gcc ARM toolchain
+- `CMAKE_MODULE_PATH` - path for CMake to https://github.com/ObKo/stm32-cmake cmake modules
+
+Example `launch.json`
 
 ```json
 {
@@ -56,3 +60,7 @@ launch.json
     ]
 }
 ```
+
+- `cwd` - path to repository root
+- `executable` - relative to `cwd`
+- `configFiles` - can be find in <path to OpenOCD>\share\openocd\scripts\board

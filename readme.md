@@ -1,26 +1,19 @@
 # Blinky
 
-## General notes
+## Prerequisites 
 
-Download firmware files by using STM32CubeMX for your STM. Those files are later used by
-https://github.com/ObKo/stm32-cmake CMake modules.
-
-Used projects:
-
-https://github.com/ObKo/stm32-cmake - STM32 CMake modules
-https://github.com/cmsis-svd/cmsis-svd/tree/main/data/STMicro - debugging SVD files
-
-## Toolchain
-
-Download and add to path ARM toolchain, CMake and Ninja.
+ - download firmware files in STM32CubeMX
+ - clone https://github.com/ObKo/stm32-cmake
+ - download SVD file from https://github.com/cmsis-svd/cmsis-svd/tree/main/data/STMicro
+ - download and add to path ARM toolchain, CMake and Ninja
 
 ## Flashing
 
-For flashing use STM32CubeProgrammer
+For flashing use OpenOCD or STM32CubeProgrammer
+
+TODO: add VS Code task for flashing with OpenOCD
 
 ## CMake configuration (in VS Code)
-
-Clone https://github.com/ObKo/stm32-cmake
 
 settings.json
 

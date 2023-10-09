@@ -15,8 +15,6 @@ TODO: add VS Code task for flashing with OpenOCD
 
 ## VS Code configuration
 
----
-
 Example `settings.json`
 
 ```json

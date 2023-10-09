@@ -65,4 +65,4 @@ Example `launch.json`
 
 - `cwd` - path to repository root
 - `executable` - relative to `cwd`
-- `configFiles` - can be find in <path to OpenOCD>\share\openocd\scripts\board
+- `configFiles` - can be find in \<path to OpenOCD\>\share\openocd\scripts\board

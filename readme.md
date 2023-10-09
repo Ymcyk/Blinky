@@ -13,7 +13,7 @@ For flashing use OpenOCD or STM32CubeProgrammer
 
 TODO: add VS Code task for flashing with OpenOCD
 
-## CMake configuration (in VS Code)
+## VS Code configuration
 
 settings.json
 

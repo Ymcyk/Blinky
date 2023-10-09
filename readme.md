@@ -47,13 +47,13 @@ Example `launch.json`
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "openocd",
-            "cwd": "${workspaceFolder}", // path to repository root
-            "executable": "build/blinky.elf", // relative to cwd
+            "cwd": "${workspaceFolder}",
+            "executable": "build/blinky.elf",
             "name": "Debug Blinky",
             "device": "STM32F446RE",
-            "svdFile": "C:/Utils/SVD/STM32F446.svd", // downloaded from https://github.com/cmsis-svd/cmsis-svd/tree/main/data/STMicro
+            "svdFile": "C:/Utils/SVD/STM32F446.svd",
             "configFiles": [
-                "board/st_nucleo_f4.cfg" // this can be find in OpenOCD\share\openocd\scripts\board
+                "board/st_nucleo_f4.cfg"
             ],
             "runToEntryPoint": "main"
         }

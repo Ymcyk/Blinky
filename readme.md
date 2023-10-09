@@ -7,12 +7,6 @@
  - download SVD file from https://github.com/cmsis-svd/cmsis-svd/tree/main/data/STMicro
  - download and add to path ARM toolchain, CMake and Ninja
 
-## Flashing
-
-For flashing use OpenOCD or STM32CubeProgrammer
-
-TODO: add VS Code task for flashing with OpenOCD
-
 ## VS Code configuration
 
 Example `settings.json`

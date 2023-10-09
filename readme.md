@@ -15,6 +15,8 @@ TODO: add VS Code task for flashing with OpenOCD
 
 ## VS Code configuration
 
+---
+
 Example `settings.json`
 
 ```json
@@ -36,6 +38,8 @@ Example `settings.json`
 - `STM32_CUBE_F4_PATH` - firmware from STM32CubeMX
 - `STM32_TOOLCHAIN_PATH` - path to gcc ARM toolchain
 - `CMAKE_MODULE_PATH` - path for CMake to https://github.com/ObKo/stm32-cmake cmake modules
+
+---
 
 Example `launch.json`
 

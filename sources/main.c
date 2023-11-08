@@ -1,57 +1,138 @@
 #include <stdint.h>
-#include "stm32f446xx.h"
+#include <stdbool.h>
+#include <stm32f446xx.h>
 
-#define LD2_ON GPIOA->BSRR = GPIO_BSRR_BS5
-#define LD2_OFF GPIOA->BSRR = GPIO_BSRR_BR5
+#include "stm32f4xx.h"
 
-// PA5 - LD4
+const uint32_t systick_value = 16000000 / 1000; // one milisecond
+volatile uint32_t systick_counter = 0;
 
-void ConfigureLD2();
-void Delay();
+void configurate();
+void delay(uint32_t time);
+void set_led(bool status);
 
-int main()
-{
+/*
+input:
+	PA8
+	PB10
+	PB4
+	PB5
+output:
+	PB3
+	PA10
+	PA2
+	PA3
+*/
 
-	ConfigureLD2();
-
-    /* Loop forever */
-	while(1)
-	{
-		// Set LED on PA5
-		LD2_ON;
-		Delay();
-
-		// Reset LED on PA5
-		LD2_OFF;
-		Delay();
-	}
-}
-
-void ConfigureLD2()
-{
-	// Enable Clock for PORTD
+int main() {
+	// Configuration
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+	SysTick_Config(systick_value);
 
-	// Configure GPIO Mode - Output
-	GPIOA->MODER |= GPIO_MODER_MODE5_0; // It's default reset state. Not necessary.
+	// Out PC0
+	GPIOC->MODER |= GPIO_MODER_MODE0_0;
+	GPIOC->MODER &= ~(GPIO_MODER_MODE0_1);
+	GPIOC->OTYPER &= ~(GPIO_OTYPER_OT0);
+	GPIOC->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR0);
+	GPIOC->PUPDR &= ~(GPIO_PUPDR_PUPD0_0);
+	GPIOC->PUPDR |= GPIO_PUPDR_PUPD0_1;
+
+	GPIOC->MODER |= GPIO_MODER_MODE1_0;
+	GPIOC->MODER &= ~(GPIO_MODER_MODE1_1);
+	GPIOC->OTYPER &= ~(GPIO_OTYPER_OT1);
+	GPIOC->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR1);
+	GPIOC->PUPDR &= ~(GPIO_PUPDR_PUPD1_0);
+	GPIOC->PUPDR |= GPIO_PUPDR_PUPD1_1;
+
+	GPIOC->MODER |= GPIO_MODER_MODE2_0;
+	GPIOC->MODER &= ~(GPIO_MODER_MODE2_1);
+	GPIOC->OTYPER &= ~(GPIO_OTYPER_OT2);
+	GPIOC->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR2);
+	GPIOC->PUPDR &= ~(GPIO_PUPDR_PUPD2_0);
+	GPIOC->PUPDR |= GPIO_PUPDR_PUPD2_1;
+
+	GPIOC->MODER |= GPIO_MODER_MODE3_0;
+	GPIOC->MODER &= ~(GPIO_MODER_MODE3_1);
+	GPIOC->OTYPER &= ~(GPIO_OTYPER_OT3);
+	GPIOC->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR3);
+	GPIOC->PUPDR &= ~(GPIO_PUPDR_PUPD3_0);
+	GPIOC->PUPDR |= GPIO_PUPDR_PUPD3_1;
+
+	// LED - PA5
+	GPIOA->MODER |= GPIO_MODER_MODE5_0;
 	GPIOA->MODER &= ~(GPIO_MODER_MODE5_1);
+	GPIOA->OTYPER &= ~(GPIO_OTYPER_OT5);
+	GPIOA->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR5);
+	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD5_0);
 
-	// Configure Output Mode - Push-pull
-	GPIOA->OTYPER &= ~(GPIO_OTYPER_OT5); // It's default reset state. Not necessary.
+	GPIOC->BSRR |= GPIO_BSRR_BS0;
+	GPIOC->BSRR |= GPIO_BSRR_BS1;
+	GPIOC->BSRR |= GPIO_BSRR_BS2;
+	GPIOC->BSRR |= GPIO_BSRR_BS3;
 
-	// Configure GPIO Speed - Low
-	GPIOA->OSPEEDR &= ~(GPIO_OSPEEDR_OSPEED5); // Two bits together. It's default reset state. Not necessary.
-
-	// Configure Pull-up/Pull-down - no PU/PD
-	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD5); // It's default reset state. Not necessary.
+	for (;;) {
+		delay(1000);
+		GPIOA->BSRR |= GPIO_BSRR_BS5;
+		
+		delay(1000);
+		GPIOA->BSRR |= GPIO_BSRR_BR5;
+	}
 }
 
-void Delay()
-{
-	uint32_t i;
+void ahb1_conf();
+void systick_conf();
+void led_conf();
+void keyboard_conf();
 
-	for(i = 0; i < 999999; i++)
-	{
+void configurate() {
+	ahb1_conf();
+	systick_conf();
+	led_conf();
+	keyboard_conf();
+}
+
+void delay(uint32_t time) {
+	const uint32_t start_time = systick_counter;
+
+	while (systick_counter < (start_time + time)) {
 
 	}
+}
+
+void set_led(bool status) {
+	if (status) {
+		GPIOA->BSRR |= GPIO_BSRR_BS5;
+	} else {
+		GPIOA->BSRR |= GPIO_BSRR_BR5;
+	}
+}
+
+void ahb1_conf() {
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+}
+
+void systick_conf() {
+	SysTick_Config(systick_value);
+}
+
+void led_conf() {
+	GPIOA->MODER |= GPIO_MODER_MODE5_0;
+	GPIOA->MODER &= ~(GPIO_MODER_MODE5_1);
+	GPIOA->OTYPER &= ~(GPIO_OTYPER_OT5);
+	GPIOA->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR5);
+	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD5);
+}
+
+void keyboard_conf() {
+	GPIOA->MODER |= GPIO_MODER_MODE8_0;
+	GPIOA->MODER &= ~(GPIO_MODER_MODE8_1);
+	GPIOA->OTYPER &= ~(GPIO_OTYPER_OT8);
+	GPIOA->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR8);
+	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD8);
+	// GPIOA->PUPDR |= GPIO_PUPDR_PUPD3_1;
+}
+
+void SysTick_Handler(void) {
+	++systick_counter;
 }

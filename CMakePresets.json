@@ -1,0 +1,44 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "firmware",
+      "displayName": "Firmware Config",
+      "description": "Firmware build using Ninja generator",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/firmware",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/stm32-cmake/cmake/stm32_gcc.cmake",
+        "STM32_CUBE_F4_PATH": "/opt/STM32CubeF4",
+        "STM32_TARGET_TRIPLET": "arm-none-eabi",
+        "STM32_TOOLCHAIN_PATH": "/opt/arm-gnu-toolchain/bin",
+        "CMAKE_MODULE_PATH": "/opt/stm32-cmake/cmake"
+      }
+    },
+    {
+      "name": "ut",
+      "displayName": "Unit Tests Config",
+      "description": "Unit tests build using Ninja generator",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/ut",
+      "cacheVariables": {
+        "TESTING_ENABLED": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "firmware",
+      "configurePreset": "firmware"
+    },
+    {
+      "name": "ut",
+      "configurePreset": "ut"
+    }
+  ]
+}

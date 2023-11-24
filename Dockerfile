@@ -19,6 +19,8 @@ RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/nul
     | tee /etc/apt/sources.list.d/kitware.list >/dev/null
 
 RUN apt update && apt install -y \
+    gcc \
+    g++ \
     ninja-build \
     cmake \
     git \

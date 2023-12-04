@@ -2,7 +2,6 @@ FROM ubuntu:22.04
 
 ARG STM32CUBEF4_URL=https://github.com/STMicroelectronics/STM32CubeF4.git
 ARG STM32_CMAKE_URL=https://github.com/ObKo/stm32-cmake.git
-ARG SVDSTM32F4_URL=https://raw.githubusercontent.com/cmsis-svd/cmsis-svd/main/data/STMicro/STM32F446.svd
 ARG ARMTOOLCHAIN_URL=https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-arm-none-eabi.tar.xz
 ARG ARMTOOLCHAIN_DOWNLOAD_NAME=arm-gnu-toolchain-13.2.rel1-x86_64-arm-none-eabi.tar.xz
 
@@ -25,6 +24,7 @@ RUN apt update && apt install -y \
     cmake \
     git \
     xz-utils \
+    clangd \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt
@@ -33,7 +33,6 @@ RUN git clone ${STM32CUBEF4_URL} && \
     cd STM32CubeF4 && \
     git switch --detach v1.27.1
 RUN git clone ${STM32_CMAKE_URL}
-RUN wget https://raw.githubusercontent.com/cmsis-svd/cmsis-svd/main/data/STMicro/STM32F446.svd
 RUN wget ${ARMTOOLCHAIN_URL} && \
     tar -xf arm-gnu-toolchain*.tar.xz && \
     mv `ls -d */ | grep arm-gnu-toolchain` arm-gnu-toolchain && \

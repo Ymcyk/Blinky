@@ -20,7 +20,7 @@ docker build -t stm32f4_tools .
 Create container and bind source files (from project's root):
 
 ```bash
-docker container run -it --name stm -v .:/src stm_dev
+docker container run -it --name stm -v .:/src stm32f4_tools
 ```
 
 ### Building inside Docker container

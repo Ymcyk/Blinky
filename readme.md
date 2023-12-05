@@ -1,5 +1,7 @@
 # Blinky
 
+Playground project for my STM32F446RE learning purposes
+
 ## Prerequisites 
 
  - Docker - building firmware and unit tests

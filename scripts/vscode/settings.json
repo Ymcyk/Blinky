@@ -1,0 +1,5 @@
+{
+    "cortex-debug.openocdPath": "C:/Utils/OpenOCD/bin/openocd.exe",
+    "cortex-debug.armToolchainPath.windows": "C:/Utils/Compilers/arm-gnu-toolchain-mingw/bin",
+    "cortex-debug.gdbPath.windows": "C:/Utils/Compilers/arm-gnu-toolchain-mingw/bin/arm-none-eabi-gdb.exe"
+}

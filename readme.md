@@ -46,7 +46,7 @@ cmake --build --preset ut
 cmake --build --preset firmware
 ```
 
-### Attaching to stoped container
+### Attaching to stopped container
 
 ```bash
 docker container start -ai stm

@@ -36,3 +36,7 @@ Build:
 cmake --build --preset ut
 cmake --build --preset firmware
 ```
+
+## Flashing and debugging
+
+__TBD__

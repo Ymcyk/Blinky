@@ -24,7 +24,6 @@ RUN apt update && apt install -y \
     cmake \
     git \
     xz-utils \
-    clangd \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt

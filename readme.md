@@ -46,6 +46,12 @@ cmake --build --preset ut
 cmake --build --preset firmware
 ```
 
+### Attaching to stoped container
+
+```bash
+docker container start -ai stm
+```
+
 ## Flashing and debugging
 
 __TBD__

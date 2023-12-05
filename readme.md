@@ -1,4 +1,4 @@
-# Blinky
+# STM_playground
 
 Playground project for my STM32F446RE learning purposes
 

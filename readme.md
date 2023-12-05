@@ -7,7 +7,14 @@ Playground project for my STM32F446RE learning purposes
  - Docker - building firmware and unit tests
  - OpenOCD  - flashing and debugging
 
-## Building 
+## Building
+
+### Clone submodules
+
+```bash
+git submodule init
+git submodule update
+```
 
 ### Preparing Docker container
 

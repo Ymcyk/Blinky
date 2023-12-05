@@ -17,7 +17,8 @@
         "STM32_CUBE_F4_PATH": "/opt/STM32CubeF4",
         "STM32_TARGET_TRIPLET": "arm-none-eabi",
         "STM32_TOOLCHAIN_PATH": "/opt/arm-gnu-toolchain/bin",
-        "CMAKE_MODULE_PATH": "/opt/stm32-cmake/cmake"
+        "CMAKE_MODULE_PATH": "/opt/stm32-cmake/cmake",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
     {
@@ -27,7 +28,8 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/ut",
       "cacheVariables": {
-        "TESTING_ENABLED": "ON"
+        "TESTING_ENABLED": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     }
   ],
